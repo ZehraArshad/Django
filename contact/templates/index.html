@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    <title>Email Made Easy</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Get In Touch </h1>
+        <form class="row g-3" action='{% url 'contact' %}' method='post'>
+            {% csrf_token %}
+            <!-- bootstrap works on a 12 columns system; 50% means 12c-->
+            <div class="col-md-6">
+                <label for="your_name" class="form-label">Your Name   
+                </label>
+                <input type="Text" name='message-name' class="form-control" id="your_name" required>
+            </div>  
+            <div class="col-md-6">
+                <label for="Your_email" class="form-label">Email 
+                </label>
+                <input type="email" name='message-email' class="form-control" id="Your_email" required>
+            </div>
+            <!---->
+            <div class="col-md-6">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" name="age" class="form-control" id="age" required>
+            </div>
+            <div class="col-md-6">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" name="location" class="form-control" id="location" required>
+            </div> 
+            <!---->           
+            <div class="col-md-12">
+                <label for="Message" class="form-label">Message
+                </label>
+                <!--No space when closing textarea e.g (<textarea
+                    a b c></textarea>)-->
+                <textarea name='message' class="form-control" id="Email Body" rows="2" placeholder="Write your message here"></textarea>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                
+            </div>
+
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ 
+</body>
+</html>

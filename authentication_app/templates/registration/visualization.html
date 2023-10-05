@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Visualizations</title>
+    <style>
+      /* CSS for the divs */
+      .chart-container {
+        width: 40%; /* Adjust as needed */
+        margin: 0 auto; /* Center the divs horizontally */
+        display: inline-block;
+        vertical-align: top; /* Align divs at the top */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML elements for rendering charts -->
+
+    <div class="chart-container" id="age">
+      <canvas id="ageChart" width="150" height="150"></canvas>
+    </div>
+    <div class="chart-container" id="location">
+      <canvas id="locationChart" width="150" height="150"></canvas>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Create a chart for age data
+      var ageCtx = document.getElementById("ageChart").getContext("2d");
+      var ageChart = new Chart(ageCtx, {
+        type: "pie", // Use pie chart
+        data: {
+          labels: {{ data.age_labels|safe }},
+          datasets: [
+            {
+              label: "Submissions by Age",
+              data: {{ data.age_counts|safe }},
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                // Add more colors as needed
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                // Add more colors as needed
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          // Customize chart options as needed
+        },
+      });
+
+      // Create a chart for location data
+      var locationCtx = document.getElementById("locationChart").getContext("2d");
+      var locationLabels = {{ data.location_labels|safe }};
+      var locationCounts = {{ data.location_counts|safe }};
+
+      var locationChart = new Chart(locationCtx, {
+        type: "pie", // Use pie chart
+        data: {
+          labels: locationLabels,
+          datasets: [
+            {
+              label: "Submissions by Location",
+              data: locationCounts,
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                // Add more colors as needed
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                // Add more colors as needed
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          // Customize chart options as needed
+        },
+      });
+    </script>
+  </body>
+</html>
